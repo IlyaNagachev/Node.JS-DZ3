@@ -19,7 +19,7 @@ function loadCounters() {
       return JSON.parse(data);
     }
   } catch (err) {
-    console.error('Error reading counters file:', err);
+    console.error('Ошибка чтения:', err);
   }
   return { '/': 0, '/about': 0 }; 
 }
@@ -29,7 +29,7 @@ function saveCounters(counters) {
   try {
     fs.writeFileSync(COUNTER_FILE, JSON.stringify(counters, null, 2));
   } catch (err) {
-    console.error('Error writing counters file:', err);
+    console.error('Ошибка записи:', err);
   }
 }
 
@@ -42,8 +42,8 @@ function injectCounter(filePath, counterValue) {
     let content = fs.readFileSync(filePath, 'utf8');
     return content.replace('{{views}}', counterValue); 
   } catch (err) {
-    console.error('Error reading HTML file:', err);
-    return '<h1>Error loading page</h1>';
+    console.error('Ошибка чтения:', err);
+    return '<h1>Ошибка закгрузки</h1>';
   }
 }
 
